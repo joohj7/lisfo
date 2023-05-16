@@ -25,6 +25,12 @@ ol{
 #grid #article{
   padding-left: 25px;
 }
+
+.intro_header { text-align:center; background:url(img/intro_bg.jpg) center top; height:672px; background-size:cover; position:relative }
+.intro_header h1 { padding-top:125px }
+.intro_header h2 { margin-top:56px; color:#fff; line-height:1.2; font-size:40px; letter-spacing:0; }
+.intro_header p { font-family:nanumsquare; font-size:26px; font-weight:700; margin-top:13px; color:#fff; line-height:1.4; letter-spacing:-1px }
+
 @media(max-width:800px){
   #grid{
     display: block;
