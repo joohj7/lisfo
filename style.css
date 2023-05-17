@@ -6,7 +6,7 @@
     margin: 0;
 }
 .header {
-    flex: 2;
+    flex: 1;
     /* background-color: #000000; */
     padding: 20px;
     text-align: center;
@@ -19,7 +19,7 @@
 .header p { font-family:nanumsquare; font-size:26px; font-weight:700; margin-top:13px; color:#fff; line-height:1.4; letter-spacing:-1px 
 }
 .content {
-    flex: 8;
+    flex: 3;
     display: flex;
 }
 .sidebar {
@@ -45,5 +45,6 @@
     text-align:center; 
     background:url(img/main_bg.jpg) center top; 
     background-size:cover; 
-    position:relative
+    position:relative;    
+    color:#fff;
 }
