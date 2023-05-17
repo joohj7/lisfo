@@ -31,7 +31,7 @@
 
         const folderNameElement = document.createElement('div');
         folderNameElement.classList.add('folder-name');
-        folderNameElement.textContent = rootFolder + '/' + folderData.id;
+        folderNameElement.textContent = folderData.id;
         folderNameElement.addEventListener('click', function() {
           folderElement.classList.toggle('expanded');
         });
