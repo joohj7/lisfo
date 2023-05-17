@@ -30,14 +30,19 @@
     color:#fff;
     
 }
-.folder > ul {
-    display: none;
-    list-style: none;
-    padding-left: 20px;
-}
-.folder.open > ul {
+.folder {
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+
+.expanded > ul {
     display: block;
+  }
+
+ul {
+    display: none;
 }
+
 .main {
     flex: 4;
     padding: 20px;
@@ -48,3 +53,18 @@
     position:relative;    
     color:#fff;
 }
+
+ /* 모바일에 최적화된 CSS 스타일 */
+ @media (max-width: 700px) {
+    .header h2 {
+      font-size: 24px;
+    }
+
+    .header p {
+      font-size: 18px;
+    }
+
+    .sidebar {
+      padding: 10px;
+    }
+  }
