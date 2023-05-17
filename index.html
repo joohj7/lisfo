@@ -14,14 +14,14 @@
         .then(response => response.json())
         .then(data => {
           const sidebarElement = document.querySelector('.sidebar');
-          createFolderElements(data.folders, sidebarElement);
+          createFolderElements(data.folders, sidebarElement, 'web-data');
         })
         .catch(error => {
           console.error('Error loading folders.json:', error);
         });
     });
   
-    function createFolderElements(foldersData, parentElement) {
+    function createFolderElements(foldersData, parentElement, rootFolder) {
       foldersData.forEach(folderData => {
         const folderElement = document.createElement('div');
         folderElement.classList.add('folder');
@@ -43,7 +43,7 @@
             const fileElement = document.createElement('li');
             const fileLinkElement = document.createElement('a');
             fileLinkElement.textContent = file.split('.')[0];
-            fileLinkElement.href = folderData.id + '/' + file;
+            fileLinkElement.href = rootFolder + '/' + folderData.id + '/' + file;
             fileElement.appendChild(fileLinkElement);
             fileListElement.appendChild(fileElement);
           });
@@ -52,6 +52,18 @@
         }
   
         parentElement.appendChild(folderElement);
+      });
+  
+      const accordionFolders = document.querySelectorAll('.folder');
+      accordionFolders.forEach(folder => {
+        folder.addEventListener('click', function() {
+          accordionFolders.forEach(otherFolder => {
+            if (otherFolder !== folder) {
+              otherFolder.classList.remove('expanded');
+            }
+          });
+          folder.classList.toggle('expanded');
+        });
       });
     }
   </script>
