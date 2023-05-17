@@ -8,9 +8,30 @@
   <meta http-equiv="imagetoolbar" content="no">
   <link rel="stylesheet", type="text/css", href="style.css">
   <script>
+    // function toggleFolder(element) {
+    //   element.classList.toggle("open");
+    // }
     function toggleFolder(element) {
       element.classList.toggle("open");
-    }
+      if (element.classList.contains("open")) {
+        const folderName = element.textContent.trim();
+        fetch(`/files?folder=${encodeURIComponent(folderName)}`)
+          .then(response => response.json())
+          .then(data => {
+            const fileList = data.files;
+            const fileListElement = element.querySelector("ul");
+            fileListElement.innerHTML = "";
+            fileList.forEach(file => {
+              const li = document.createElement("li");
+              li.textContent = file;
+              fileListElement.appendChild(li);
+            });
+          })
+          .catch(error => {
+            console.error("Error:", error);
+          });
+      }
+}
   </script>
 </head>
 <body>
