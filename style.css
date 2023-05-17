@@ -67,4 +67,7 @@ ul {
     .sidebar {
       padding: 10px;
     }
+    .sidebar h3{
+      font-size: 20px;
+    }
   }
