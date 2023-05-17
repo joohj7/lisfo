@@ -10,7 +10,7 @@
     /* background-color: #000000; */
     padding: 20px;
     text-align: center;
-    background:url(img/intro_bg.jpg) center top; 
+    background:url(../img/intro_bg.jpg) center top; 
     background-size:cover; 
 }
 .header h1 { padding-top:50px }
@@ -48,7 +48,7 @@ ul {
     padding: 20px;
     height:680px; 
     text-align:center; 
-    background:url(img/main_bg.jpg) center top; 
+    background:url(../img/main_bg.jpg) center top; 
     background-size:cover; 
     position:relative;    
     color:#fff;
