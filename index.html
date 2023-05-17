@@ -1,6 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 <head>
   <title>KT LODIX Global</title>
   <meta charset="utf-8">
@@ -8,53 +7,47 @@
   <meta name="HandheldFriendly" content="true">
   <meta http-equiv="imagetoolbar" content="no">
   <link rel="stylesheet", type="text/css", href="style.css">
+  <style>
+    
+
+  </style>
   <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      var folders = document.querySelectorAll('.folder');
-      folders.forEach(function (folder) {
-        folder.addEventListener('click', function () {
-          this.classList.toggle('opened');
-        });
-      });
-    });
+    function toggleFolder(element) {
+      element.classList.toggle("open");
+    }
   </script>
 </head>
 <body>
-  <header class="intro_header">
-    <h1><a href="index.html"><img style="height: 85px;" src="img/ci_l.png" alt="logo"></a></h1>
+  <div class="header">
+    <h1><img style="height: 85px;" src="img/ci_l.png" alt="logo"></a></h1>
     <h2>Logistics Intelligence Suite for Freight Optimization</h2>
     <p>AI&nbsp;기반 운송 차량 최적화를 통해 물류 산업 Digital Transformation을 선도합니다.</p> 
-  </header>
-  <div id="grid">
-  <ol>
-    <ul>
-      <li class="folder">230222
-        <ul>
-          <li><a href="230222/CA01.html">CA01</a></li>
-          <li><a href="230222/CA02.html">CA02</a></li>
-          <li><a href="230222/CA03.html">CA03</a></li>
-          <li><a href="230222/CA04.html">CA04</a></li>
-          <li><a href="230222/CA05.html">CA05</a></li>
-        </ul>
-      </li>
-      <li class="folder">폴더 2
-        <ul>
-        </ul>
-      </li>
-    </ul>
-  </ol>
-      <!-- <li><a href="230222/CA01.html">230222/CA01</a></li>
-      <li><a href="230222/CA02.html">230222/CA02</a></li>
-      <li><a href="230222/CA03.html">230222/CA03</a></li>
-      <li><a href="230222/CA04.html">230222/CA04</a></li>
-      <li><a href="230222/CA05.html">230222/CA05</a></li> -->
-
-  <div id=article>
-  <h2>해외향 LISFO</h2>
-
-  해외향 운전차 차량정보에 대한 정보 테스트 진행 
-</div>
-</div>
+    <!-- <img src="메인_이미지_파일_경로.jpg" alt="메인 이미지 설명"> -->
+    <!-- <img src="이미지_파일_경로.jpg" alt="이미지 설명"> -->
+  </div>
+  <div class="content">
+    <div class="sidebar">
+      <h3>조회날짜</h3>
+      <ul>
+        <li class="folder" onclick="toggleFolder(this)">230222
+          <ul>
+            <li><a href="230222/CA01.html">CA01</a></li>
+            <li><a href="230222/CA02.html">CA02</a></li>
+            <li><a href="230222/CA03.html">CA03</a></li>
+            <li><a href="230222/CA04.html">CA04</a></li>
+            <li><a href="230222/CA05.html">CA05</a></li>
+          </ul>
+        </li>
+        <li class="folder" onclick="toggleFolder(this)">230223
+          <ul>
+            <li>파일 2-1</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="main">
+      해외향 운전차 차량정보에 대한 정보 테스트 진행 
+    </div>
+  </div>
 </body>
-
 </html>
