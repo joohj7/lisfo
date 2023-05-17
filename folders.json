@@ -1,4 +1,10 @@
-{
+[
+  {
     "folder": "230222",
     "files": ["CA01.html", "CA02.html", "CA03.html", "CA04.html", "CA05.html"]
+  },
+  {
+    "folder": "230223",
+    "files": ["DT01.html", "DT02.html", "DT03.html", "DT07.html"]
   }
+]
