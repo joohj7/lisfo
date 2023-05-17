@@ -8,21 +8,47 @@
   <meta name="HandheldFriendly" content="true">
   <meta http-equiv="imagetoolbar" content="no">
   <link rel="stylesheet", type="text/css", href="style.css">
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      var folders = document.querySelectorAll('.folder');
+      folders.forEach(function (folder) {
+        folder.addEventListener('click', function () {
+          this.classList.toggle('opened');
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <header class="intro_header">
     <h1><a href="index.html"><img style="height: 85px;" src="img/ci_l.png" alt="logo"></a></h1>
     <h2>Logistics Intelligence Suite for Freight Optimization</h2>
-    <p>AI&nbsp;기반 운송 차량 최적화를 통해 물류 산업 Digital Transformation을 선도합니다.</p>
+    <p>AI&nbsp;기반 운송 차량 최적화를 통해 물류 산업 Digital Transformation을 선도합니다.</p> 
   </header>
   <div id="grid">
   <ol>
-      <li><a href="230222/CA01.html">230222/CA01</a></li>
+    <ul>
+      <li class="folder">230222
+        <ul>
+          <li><a href="230222/CA01.html">CA01</a></li>
+          <li><a href="230222/CA02.html">CA02</a></li>
+          <li><a href="230222/CA03.html">CA03</a></li>
+          <li><a href="230222/CA04.html">CA04</a></li>
+          <li><a href="230222/CA05.html">CA05</a></li>
+        </ul>
+      </li>
+      <li class="folder">폴더 2
+        <ul>
+        </ul>
+      </li>
+    </ul>
+  </ol>
+      <!-- <li><a href="230222/CA01.html">230222/CA01</a></li>
       <li><a href="230222/CA02.html">230222/CA02</a></li>
       <li><a href="230222/CA03.html">230222/CA03</a></li>
       <li><a href="230222/CA04.html">230222/CA04</a></li>
-      <li><a href="230222/CA05.html">230222/CA05</a></li>
-  </ol>
+      <li><a href="230222/CA05.html">230222/CA05</a></li> -->
+
   <div id=article>
   <h2>해외향 LISFO</h2>
 
