@@ -137,6 +137,7 @@ def optm_carPlot(input_dir="./input", output_dir="./output", fdate='230222',
         car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True)
         optmplot(car_result, dir= dir_fdate, carnum=carnum)
 
+
 def get_filelist_to_json(output_dir='./web-data', file_path = './folders.json'):
     import os
     import json
@@ -145,7 +146,7 @@ def get_filelist_to_json(output_dir='./web-data', file_path = './folders.json'):
     filedict = {}
     filedict['rootFolder'] = output_dir
     filedict['folders'] = []
-    for datedir in sorted(glob.glob(os.path.join(output_dir,'*'))):
+    for datedir in sorted(glob.glob(os.path.join(output_dir,'*')), reverse=True):
         redatedir = datedir.replace(output_dir, "").replace('/', '')
         file_lists = sorted([f for f in os.listdir(datedir)])
         filedict['folders'].append({
@@ -159,5 +160,5 @@ if __name__=='__main__':
     import os
     input_dir = os.path.join('./', 'input-data')
     output_dir = os.path.join('./', 'web-data')
-    optm_carPlot(input_dir=input_dir, output_dir=output_dir, fdate='230222')
+    optm_carPlot(input_dir=input_dir, output_dir=output_dir, fdate='230223')
     get_filelist_to_json(output_dir='./web-data')
