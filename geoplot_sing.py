@@ -138,7 +138,7 @@ def optm_carPlot(input_dir="./input", output_dir="./output", fdate='230222',
         optmplot(car_result, dir= dir_fdate, carnum=carnum)
 
 
-def get_filelist_to_json(output_dir='./web-data', file_path = './folders.json'):
+def get_files_to_json(output_dir='./web-data', file_path = './folders.json'):
     import os
     import json
     import glob
@@ -161,4 +161,4 @@ if __name__=='__main__':
     input_dir = os.path.join('./', 'input-data')
     output_dir = os.path.join('./', 'web-data')
     optm_carPlot(input_dir=input_dir, output_dir=output_dir, fdate='230223')
-    get_filelist_to_json(output_dir='./web-data')
+    get_files_to_json(output_dir='./web-data')
