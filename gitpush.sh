@@ -13,5 +13,5 @@ web_folder_path='web-data'
 
 # git add
 git add *
-git commit -m "file is uploaded(auto) : $date" 
+git commit -m "file is uploaded(auto)" 
 git push 
