@@ -14,9 +14,20 @@
     background-size:cover; 
 }
 .header h1 { padding-top:50px }
-.header h2 { margin-top:56px; color:#fff; font-size:40px; letter-spacing:0
+.header h2 { 
+  margin-top:56px; 
+  color:#fff; 
+  font-size:40px; 
+  letter-spacing:0
 }
-.header p { font-family:nanumsquare; font-size:26px; font-weight:700; margin-top:13px; color:#fff; line-height:1.4; letter-spacing:-1px 
+.header p { 
+  font-family:nanumsquare; 
+  font-size:26px; 
+  font-weight:700; 
+  margin-top:13px; 
+  color:#fff; 
+  line-height:1.4; 
+  letter-spacing:-1px 
 }
 .content {
     flex: 3;
