@@ -146,7 +146,9 @@ def get_files_to_json(output_dir='./web-data', file_path = './folders.json'):
     filedict = {}
     filedict['rootFolder'] = output_dir
     filedict['folders'] = []
-    for datedir in sorted(glob.glob(os.path.join(output_dir,'*')), reverse=True):
+
+    dateDirlist= sorted(glob.glob(os.path.join(output_dir,'*')), reverse=True) #최신날짜가 가장먼저
+    for datedir in dateDirlist:
         redatedir = datedir.replace(output_dir, "").replace('/', '')
         file_lists = sorted([f for f in os.listdir(datedir)])
         filedict['folders'].append({
