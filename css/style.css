@@ -57,7 +57,7 @@ ul {
 }
 
  /* 모바일에 최적화된 CSS 스타일 */
- @media (max-width: 700px) {
+ @media (max-width: 680px) {
     .header h2 {
       font-size: 24px;
     }
