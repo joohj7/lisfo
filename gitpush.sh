@@ -7,7 +7,7 @@
 # REPLACE THIS as your github.io structure 
 web_folder_path='web-data' 
 
-# git add & Push
+# git add, commit, push
 # git add $web_folder_path/* # 만약 특정 폴더로 제한하고 싶으면 주석 풀기
 git add * 
 git commit -m "file is uploaded(auto)" 
