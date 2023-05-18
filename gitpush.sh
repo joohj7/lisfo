@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Author: Joo Haeji(joohj7). 
-# URL: https://github.com/joohj7/lisfo-global
+# URL: https://github.com/joohj7/lisfo-global.git
 # Contact: joohj7@gmail.com
 
 
