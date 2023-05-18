@@ -13,5 +13,5 @@ web_folder_path='web-data' # 여기서 /을 앞에 넣으면 안됨. 이미지 �
 
 # git add
 git add *
-git commit -m "$fixed_filename is uploaded(auto)" 
+git commit -m "[$date] $fixed_filename is uploaded(auto)" 
 git push 
