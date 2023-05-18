@@ -29,7 +29,7 @@
     padding: 20px;
     color:#fff;
     overflow-y: auto;  /* 세로 스크롤이 나타나도록 설정 */
-    max-height: 300px; /* 사이드 바의 최대 높이 설정 */
+    max-height: 680px; /* 사이드 바의 최대 높이 설정 */
     
 }
 .folder {
