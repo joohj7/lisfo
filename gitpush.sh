@@ -12,6 +12,6 @@ web_folder_path='web-data'
 # If directories not exist, make it. 
 
 # git add
-git add *
+git add $web_folder_path/*
 git commit -m "file is uploaded(auto)" 
 git push 
