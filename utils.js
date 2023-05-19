@@ -22,7 +22,7 @@ export function createFolderElements(foldersData, parentElement, rootFolder) {
           const fileElement = document.createElement('li');
           const fileLinkElement = document.createElement('a');
           fileLinkElement.textContent = file.split('.')[0];
-          fileLinkElement.href = `${rootFolder}&date=${folderData.id}&car_id=${encodeURIComponent(file)}`;
+          fileLinkElement.href = `${rootFolder}/${folderData.id}/${encodeURIComponent(file)}`;
           fileElement.appendChild(fileLinkElement);
           fileListElement.appendChild(fileElement);
         });
