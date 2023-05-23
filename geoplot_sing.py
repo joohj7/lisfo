@@ -77,6 +77,7 @@ def pointer(m, coords_y, coords_x, color='red', marker_nm='marker_nm',min_width=
     ).add_to(m)
     return m
 
+
 def PolyLine(m, lines, color='red'):
     folium.PolyLine(
         locations=lines,
@@ -128,7 +129,7 @@ def optm_single_plot(car_result, dir='./', carnum = 'CA07', marker_color='cadetb
     m.save(os.path.join(dir, final_name))
 
 
-def optm_multi_plot(optm_location, colors,  dir='./', center_out=False):
+def optm_multi_plot(optm_location, colors,  dir='./', final_name='All_Cars.html', isCenter=False):
     init_xy = [1.3521, 103.8198]  # N(Y), E(X)
 
    # map 설정 (google map)
@@ -139,29 +140,38 @@ def optm_multi_plot(optm_location, colors,  dir='./', center_out=False):
         zoom_start=12
     )
     # optm cente
-    
-    CAR_NUM = list(set(optm_location['CAR_NUM']))
-    for i, carnum in enumerate(CAR_NUM):
-        marker_color = colors[i]
+    if isCenter ==False:
         
-        if center_out ==False: 
-            car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True)
-        else: 
-            car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True)
-        print(car_result['VISIT_ORDER'])     
-        points = []
-        for optm_cntr_lat, optm_cntr_lon, optm_order, loc_nm in zip(car_result['Y'], car_result['X'],
-                                                                        car_result['VISIT_ORDER'], car_result['LOCATION_NM']):
+        CAR_NUM = list(set(optm_location['CAR_NUM']))
+        for i, carnum in enumerate(CAR_NUM):
+            points = []
+            marker_color = colors[i]
+            car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True) 
+            for optm_cntr_lat, optm_cntr_lon, optm_order, loc_nm in zip(car_result['Y'], car_result['X'],
+                                                                                car_result['VISIT_ORDER'], car_result['LOCATION_NM']):
                 marker2(m, coords_y=optm_cntr_lat, coords_x=optm_cntr_lon,
-                        car_nm=carnum, marker_nm=optm_order, loc_nm=loc_nm, \
-                        color=marker_color)
+                                car_nm=carnum, marker_nm=optm_order, loc_nm=loc_nm, \
+                                color=marker_color)
                 if optm_order == (len(car_result) - 1):
                     marker2(m, coords_y=optm_cntr_lat, coords_x=optm_cntr_lon,
-                            car_nm=carnum, marker_nm='C', loc_nm=loc_nm, \
-                            color='lightgray')
+                                car_nm=carnum, marker_nm='C', loc_nm=loc_nm, \
+                                color='lightgray')
                 points.append([optm_cntr_lat, optm_cntr_lon])
-        PolyLine(m, lines=points, color=marker_color)
-    final_name = 'All_Cars' + ".html"
+            PolyLine(m, lines=points, color=marker_color)
+    else: 
+        CAR_NUM = list(set(optm_location['CAR_NUM']))
+        for i, carnum in enumerate(CAR_NUM):
+            points = []
+            marker_color = colors[i]
+            car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True) 
+            car_result = car_result[~car_result['VISIT_ORDER'].isin([0, len(car_result['VISIT_ORDER'])-1])] 
+            for optm_cntr_lat, optm_cntr_lon, optm_order, loc_nm in zip(car_result['Y'], car_result['X'],
+                                                                                car_result['VISIT_ORDER'], car_result['LOCATION_NM']):
+                marker2(m, coords_y=optm_cntr_lat, coords_x=optm_cntr_lon,
+                                car_nm=carnum, marker_nm=optm_order, loc_nm=loc_nm, \
+                                color=marker_color)
+                points.append([optm_cntr_lat, optm_cntr_lon])
+            PolyLine(m, lines=points, color=marker_color)             
     m.save(os.path.join(dir, final_name))
 
 def optm_carPlot(input_dir="./input", output_dir="./output", fdate='230222',
@@ -187,11 +197,8 @@ def optm_carPlot(input_dir="./input", output_dir="./output", fdate='230222',
         marker_color = colors[i]
         optm_single_plot(car_result, dir= dir_fdate, carnum=carnum, marker_color=marker_color)
     
-    optm_multi_plot(optm_location, dir= dir_fdate, colors=colors)
-    
-
-
-
+    optm_multi_plot(optm_location, dir= dir_fdate, colors=colors, final_name='All_Cars_without_Center.html', isCenter=False)
+    optm_multi_plot(optm_location, dir= dir_fdate, colors=colors, final_name='All_Cars.html',isCenter=True)
 
 def get_files_to_json(output_dir='./web-data', file_path = './folders.json'):
     import os
