@@ -140,8 +140,7 @@ def optm_multi_plot(optm_location, colors,  dir='./', final_name='All_Cars.html'
         zoom_start=12
     )
     # optm cente
-    if isCenter ==False:
-        
+    if isCenter ==True:
         CAR_NUM = list(set(optm_location['CAR_NUM']))
         for i, carnum in enumerate(CAR_NUM):
             points = []
