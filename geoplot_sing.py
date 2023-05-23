@@ -7,13 +7,24 @@ import branca.colormap as cmp
 import re
 
 
+
+
+
 def load_geodata(dir='./', load_fname='result.csv'):
     # 운송지 경로 할당 정보
     optm_location = pd.read_csv(os.path.join(dir, load_fname))
     optm_location = optm_location[['CAR_NUM', 'VISIT_ORDER',  'Y',	'X', 'LOCATION_NM']]
     return optm_location
 
-#
+
+def random_colors(n):
+    import random
+    random.seed(112233)
+    colors = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+                for i in range(n)]
+    return colors
+
+
 def marker(m, coords_y, coords_x, marker_nm='name', color= 'red', min_width=200, max_width=200):
 
     # Add  markers to the map
@@ -89,7 +100,7 @@ def ploygons(m, coords_y, coords_x, marker_nm='name', color='red'):
 
 
 
-def optmplot(car_result, dir='./', carnum = 'CA07'):
+def optm_single_plot(car_result, dir='./', carnum = 'CA07', marker_color='cadetblue'):
     init_xy = [1.3521, 103.8198]  # N(Y), E(X)
 
    # map 설정 (google map)
@@ -100,42 +111,81 @@ def optmplot(car_result, dir='./', carnum = 'CA07'):
         zoom_start=12
     )
     # optm center
-    marker_colors = [
-    'blue','gray','darkred', 'purple','orange',
-    'green','darkgreen','darkblue','lightblue','cadetblue','lightred','darkpurple',
-    'pink','lightgreen','lightgray','black','beige']
 
     points = []
     for optm_cntr_lat, optm_cntr_lon, optm_order, loc_nm in zip(car_result['Y'], car_result['X'],
                                                                 car_result['VISIT_ORDER'], car_result['LOCATION_NM']):
         marker2(m, coords_y=optm_cntr_lat, coords_x=optm_cntr_lon,
                 car_nm=carnum, marker_nm=optm_order, loc_nm=loc_nm, \
-                color='cadetblue')
+                color=marker_color)
         if optm_order == (len(car_result) - 1):
             marker2(m, coords_y=optm_cntr_lat, coords_x=optm_cntr_lon,
-                    car_nm=carnum, marker_nm='0', loc_nm=loc_nm, \
+                    car_nm=carnum, marker_nm='C', loc_nm=loc_nm, \
                     color='lightgray')
         points.append([optm_cntr_lat, optm_cntr_lon])
-    PolyLine(m, lines=points)
+    PolyLine(m, lines=points, color=marker_color)
     final_name = carnum + ".html"
     m.save(os.path.join(dir, final_name))
 
 
+def optm_multi_plot(optm_location, colors,  dir='./'):
+    init_xy = [1.3521, 103.8198]  # N(Y), E(X)
+
+   # map 설정 (google map)
+    m = folium.Map(
+        location=init_xy,
+        tiles="http://mt0.google.com/vt/lyrs=m&hl=ko&x={x}&y={y}&z={z}",
+        attr='Google',
+        zoom_start=12
+    )
+    # optm cente
+    
+    CAR_NUM = list(set(optm_location['CAR_NUM']))
+    for i, carnum in enumerate(CAR_NUM):
+        car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True)
+        marker_color = colors[i]
+        points = []
+        for optm_cntr_lat, optm_cntr_lon, optm_order, loc_nm in zip(car_result['Y'], car_result['X'],
+                                                                        car_result['VISIT_ORDER'], car_result['LOCATION_NM']):
+                marker2(m, coords_y=optm_cntr_lat, coords_x=optm_cntr_lon,
+                        car_nm=carnum, marker_nm=optm_order, loc_nm=loc_nm, \
+                        color=marker_color)
+                if optm_order == (len(car_result) - 1):
+                    marker2(m, coords_y=optm_cntr_lat, coords_x=optm_cntr_lon,
+                            car_nm=carnum, marker_nm='C', loc_nm=loc_nm, \
+                            color='lightgray')
+                points.append([optm_cntr_lat, optm_cntr_lon])
+        PolyLine(m, lines=points, color=marker_color)
+    final_name = 'All_Cars' + ".html"
+    m.save(os.path.join(dir, final_name))
+
 def optm_carPlot(input_dir="./input", output_dir="./output", fdate='230222',
                  load_fname='result_20230222.csv'):
+    import random
+    import os
     # 데이터 전처리
     optm_location= load_geodata(dir=input_dir, load_fname=load_fname) #최적화 엔진 결과로 떨어질 것
-
-    import os
 
     dir_fdate = os.path.join(output_dir, fdate)
     if not os.path.exists(dir_fdate):
         os.makedirs(dir_fdate)
 
     CAR_NUM = list(set(optm_location['CAR_NUM']))
-    for carnum in CAR_NUM:
+
+    # random color
+    number_of_colors = len(CAR_NUM)
+    colors = random_colors(number_of_colors)
+    
+    # 개별 차량 출력
+    for i, carnum in enumerate(CAR_NUM):
         car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True)
-        optmplot(car_result, dir= dir_fdate, carnum=carnum)
+        marker_color = colors[i]
+        optm_single_plot(car_result, dir= dir_fdate, carnum=carnum, marker_color=marker_color)
+    
+    optm_multi_plot(optm_location, dir= dir_fdate, colors=colors)
+    
+
+
 
 
 def get_files_to_json(output_dir='./web-data', file_path = './folders.json'):

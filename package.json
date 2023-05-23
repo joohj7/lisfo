@@ -1,0 +1,23 @@
+{
+  "name": "lisfo-global-web",
+  "version": "1.0.0",
+  "keywords": [
+    "maps",
+    "samples"
+  ],
+  "description": "해외향 lisfo web 개발",
+  "main": "script.js",
+  "scripts": {
+    "test": "tsc --no-emit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joohj7/lisfo-global.git"
+  },
+  "author": "hj.joo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joohj7/lisfo-global/issues"
+  },
+  "homepage": "https://github.com/joohj7/lisfo-global#readme"
+}

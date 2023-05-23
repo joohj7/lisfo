@@ -1,6 +1,7 @@
 // script.js
 
-import { createFolderElements } from './utils.js';
+import  createFolderElements  from './utils.js';
+
 document.addEventListener('DOMContentLoaded', function() {
       fetch('folders.json')
         .then(response => response.json())
