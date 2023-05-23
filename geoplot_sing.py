@@ -128,7 +128,7 @@ def optm_single_plot(car_result, dir='./', carnum = 'CA07', marker_color='cadetb
     m.save(os.path.join(dir, final_name))
 
 
-def optm_multi_plot(optm_location, colors,  dir='./'):
+def optm_multi_plot(optm_location, colors,  dir='./', center_out=False):
     init_xy = [1.3521, 103.8198]  # N(Y), E(X)
 
    # map 설정 (google map)
@@ -142,8 +142,13 @@ def optm_multi_plot(optm_location, colors,  dir='./'):
     
     CAR_NUM = list(set(optm_location['CAR_NUM']))
     for i, carnum in enumerate(CAR_NUM):
-        car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True)
         marker_color = colors[i]
+        
+        if center_out ==False: 
+            car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True)
+        else: 
+            car_result = optm_location[optm_location['CAR_NUM'] == carnum].reset_index(drop=True)
+        print(car_result['VISIT_ORDER'])     
         points = []
         for optm_cntr_lat, optm_cntr_lon, optm_order, loc_nm in zip(car_result['Y'], car_result['X'],
                                                                         car_result['VISIT_ORDER'], car_result['LOCATION_NM']):
