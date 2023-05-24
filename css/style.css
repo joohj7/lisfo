@@ -61,8 +61,8 @@ ul {
     padding: 20px;
     height:680px; 
     text-align:center; 
-    background:url(../img/main_bg.jpg) center top; 
-    background-size:cover; 
+    /* background:url(../img/main_bg.jpg) center top;  */
+    /* background-size:cover;  */
     position:relative;    
     color:#fff;
 }
