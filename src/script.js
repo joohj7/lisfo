@@ -3,7 +3,7 @@
 import { createFolderElements, loadHTMLFile } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('folders.json')
+  fetch('../folders.json')
     .then(response => response.json())
     .then(data => {
       const rootFolder = data.rootFolder;
