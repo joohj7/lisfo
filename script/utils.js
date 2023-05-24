@@ -22,10 +22,9 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
           const fileElement = document.createElement('li');
           const fileLinkElement = document.createElement('a');
           fileLinkElement.textContent = file.split('.')[0];
-          fileLinkElement.href = `${rootFolder}/${folderData.id}/${encodeURIComponent(file)}`;
-          fileLinkElement.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default navigation behavior
-            loadHTMLFile(fileLinkElement.href, mainElement);
+          fileLinkElement.addEventListener('click', function() {
+            const filePath = `${rootFolder}/${folderData.id}/${encodeURIComponent(file)}`;
+            loadHTMLFile(filePath, mainElement);
           });
           fileElement.appendChild(fileLinkElement);
           fileListElement.appendChild(fileElement);
