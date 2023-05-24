@@ -1,6 +1,6 @@
 // utils.js
 
-export function createFolderElements(foldersData, parentElement, rootFolder) {
+export function createFolderElements(foldersData, parentElement, rootFolder, mainElement) {
     foldersData.forEach(folderData => {
       const folderElement = document.createElement('div');
       folderElement.classList.add('folder');
@@ -23,6 +23,10 @@ export function createFolderElements(foldersData, parentElement, rootFolder) {
           const fileLinkElement = document.createElement('a');
           fileLinkElement.textContent = file.split('.')[0];
           fileLinkElement.href = `${rootFolder}/${folderData.id}/${encodeURIComponent(file)}`;
+          fileLinkElement.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default navigation behavior
+            loadHTMLFile(fileLinkElement.href, mainElement);
+          });
           fileElement.appendChild(fileLinkElement);
           fileListElement.appendChild(fileElement);
         });
@@ -32,4 +36,15 @@ export function createFolderElements(foldersData, parentElement, rootFolder) {
   
       parentElement.appendChild(folderElement);
     });
+  }
+  
+  export function loadHTMLFile(url, element) {
+    fetch(url)
+      .then(response => response.text())
+      .then(html => {
+        element.innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Error loading HTML file:', error);
+      });
   }
