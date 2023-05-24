@@ -46,4 +46,4 @@ export function loadHTMLFile(url, element) {
       .catch(error => {
         console.error('Error loading HTML file:', error);
       });
-  }
+}
