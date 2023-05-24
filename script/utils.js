@@ -38,12 +38,12 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
   }
   
 export function loadHTMLFile(url, element) {
-    fetch(url)
-      .then(response => response.text())
-      .then(html => {
-        element.innerHTML = html;
-      })
-      .catch(error => {
-        console.error('Error loading HTML file:', error);
-      });
+  fetch(url)
+    .then(response => response.text())
+    .then(html => {
+      element.innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Error loading HTML file:', error);
+    });
 }
