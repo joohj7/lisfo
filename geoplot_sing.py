@@ -199,6 +199,7 @@ def optm_carPlot(input_dir="./input", output_dir="./output", fdate='230222',
     optm_multi_plot(optm_location, dir= dir_fdate, colors=colors, final_name='All_Cars_without_Center.html', isCenter=False)
     optm_multi_plot(optm_location, dir= dir_fdate, colors=colors, final_name='All_Cars.html',isCenter=True)
 
+
 def get_files_to_json(output_dir='./web-data', file_path = './folders.json'):
     import os
     import json

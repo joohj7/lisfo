@@ -1,6 +1,6 @@
 // utils.js
 
-export function createFolderElements(foldersData, parentElement, rootFolder, mainElement) {
+export function createFolderElements(foldersData, parentElement, rootFolder) {
     foldersData.forEach(folderData => {
       const folderElement = document.createElement('div');
       folderElement.classList.add('folder');
@@ -22,10 +22,7 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
           const fileElement = document.createElement('li');
           const fileLinkElement = document.createElement('a');
           fileLinkElement.textContent = file.split('.')[0];
-          fileLinkElement.addEventListener('click', function() {
-            const filePath = `${rootFolder}/${folderData.id}/${encodeURIComponent(file)}`;
-            loadHTMLFile(filePath, mainElement);
-          });
+          fileLinkElement.href = `${rootFolder}/${folderData.id}/${encodeURIComponent(file)}`;
           fileElement.appendChild(fileLinkElement);
           fileListElement.appendChild(fileElement);
         });
@@ -37,13 +34,28 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
     });
   }
   
-export function loadHTMLFile(url, element) {
-  fetch(url)
-    .then(response => response.text())
-    .then(html => {
-      element.innerHTML = html;
-    })
-    .catch(error => {
-      console.error('Error loading HTML file:', error);
-    });
-}
+
+  export function loadHTMLFile(url, element) {
+    fetch(url)
+      .then(response => response.text())
+      .then(html => {
+        element.innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Error loading HTML file:', error);
+      });
+  }
+
+
+  export function openOverlay(fileUrl) {
+    const overlayElement = document.querySelector('.overlay');
+    overlayElement.innerHTML = `<iframe src="${fileUrl}" frameborder="0" width="100%" height="100%"></iframe>`;
+    overlayElement.style.display = 'block'; // 오버레이 표시
+  }
+
+
+  export function closeOverlay() {
+    const overlayElement = document.querySelector('.overlay');
+    overlayElement.style.display = 'none'; // 오버레이 숨김
+  }
+  
