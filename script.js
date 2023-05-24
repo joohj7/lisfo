@@ -1,6 +1,6 @@
 // script.js
 
-import { createFolderElements, loadHTMLFile, openOverlay, closeOverlay } from './utils.js';
+import { createFolderElements } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', function() {
   fetch('folders.json')
@@ -10,9 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const foldersData = data.folders;
 
       const sidebarElement = document.querySelector('.sidebar');
-      const overlayElement = document.querySelector('.overlay');
-      overlayElement.addEventListener('click', closeOverlay); // 오버레이 클릭 시 숨김
-      createFolderElements(foldersData, sidebarElement, rootFolder, mainElement);
+      createFolderElements(foldersData, sidebarElement, rootFolder);
     })
     .catch(error => {
       console.error('Error loading folders.json:', error);

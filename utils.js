@@ -1,6 +1,6 @@
 // utils.js
 
-export function createFolderElements(foldersData, parentElement, rootFolder, mainElement) {
+export function createFolderElements(foldersData, parentElement, rootFolder) {
     foldersData.forEach(folderData => {
       const folderElement = document.createElement('div');
       folderElement.classList.add('folder');
@@ -19,19 +19,17 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
         fileListElement.classList.add('file-list');
   
         files.forEach(function(file) {
-            const fileElement = document.createElement('li');
-            const fileLinkElement = document.createElement('a');
-            fileLinkElement.textContent = file.split('.')[0];
-            fileLinkElement.href = '#' + rootFolder + '/' + folderData.id + '/' + file; // '#' 추가
-            fileLinkElement.addEventListener('click', function() {
-              openOverlay(rootFolder + '/' + folderData.id + '/' + file); // 오버레이 열기
-            });
-            fileElement.appendChild(fileLinkElement);
-            fileListElement.appendChild(fileElement);
-          });
+          const fileElement = document.createElement('li');
+          const fileLinkElement = document.createElement('a');
+          fileLinkElement.textContent = file.split('.')[0];
+          fileLinkElement.href = `${rootFolder}/${folderData.id}/${encodeURIComponent(file)}`;
+          fileElement.appendChild(fileLinkElement);
+          fileListElement.appendChild(fileElement);
+        });
   
         folderElement.appendChild(fileListElement);
       }
+  
       parentElement.appendChild(folderElement);
     });
   }
