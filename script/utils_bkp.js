@@ -1,6 +1,6 @@
 // utils.js
 
-export function createFolderElements(foldersData, parentElement, rootFolder, mainElement) {
+export function createFolderElements(foldersData, parentElement, rootFolder) {
     foldersData.forEach(folderData => {
       const folderElement = document.createElement('div');
       folderElement.classList.add('folder');
@@ -23,10 +23,6 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
           const fileLinkElement = document.createElement('a');
           fileLinkElement.textContent = file.split('.')[0];
           fileLinkElement.href = `${rootFolder}/${folderData.id}/${encodeURIComponent(file)}`;
-          fileLinkElement.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default navigation behavior
-            loadHTMLFile(fileLinkElement.href, mainElement);
-          });
           fileElement.appendChild(fileLinkElement);
           fileListElement.appendChild(fileElement);
         });
@@ -38,6 +34,7 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
     });
   }
   
+
   export function loadHTMLFile(url, element) {
     fetch(url)
       .then(response => response.text())
@@ -48,3 +45,17 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
         console.error('Error loading HTML file:', error);
       });
   }
+
+
+  export function openOverlay(fileUrl) {
+    const overlayElement = document.querySelector('.overlay');
+    overlayElement.innerHTML = `<iframe src="${fileUrl}" frameborder="0" width="100%" height="100%"></iframe>`;
+    overlayElement.style.display = 'block'; // 오버레이 표시
+  }
+
+
+  export function closeOverlay() {
+    const overlayElement = document.querySelector('.overlay');
+    overlayElement.style.display = 'none'; // 오버레이 숨김
+  }
+  
