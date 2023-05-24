@@ -37,7 +37,7 @@ export function createFolderElements(foldersData, parentElement, rootFolder, mai
     });
   }
   
-  export function loadHTMLFile(url, element) {
+export function loadHTMLFile(url, element) {
     fetch(url)
       .then(response => response.text())
       .then(html => {
